@@ -3,32 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EtudeLib - Génie Électrique Complet</title>
+    <title> EtudeLib - Génie Électrique</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #ff416c 0%, #1e3c72 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #00ffd5 9%, #c44569 25%, #8e44ad 50%, #3c6382 75%, #d63031 100%);
+			<!-- background: linear-gradient(135deg,  -->
+  <!-- #00ffd5 0%,    /* Turquoise clair */ -->
+  <!-- #00b894 25%,   /* Vert menthe / émeraude */ -->
+  <!-- #ffeaa7 50%,   /* Jaune pastel */ -->
+  <!-- #fdcb6e 75%,   /* Orange doux */ -->
+  <!-- #d63031 100%   /* Rouge vif */ -->
+);
+			
+            background-size: 400% 400%;
+            animation: gradientMove 60s ease infinite;
             min-height: 100vh;
             color: #333;
         }
 
+        @keyframes gradientMove {
+					0%   { background-position: 30% 50%; }
+					5%   { background-position: 5% 55%; }
+					10%  { background-position: 10% 60%; }
+					15%  { background-position: 15% 35%; }
+					20%  { background-position: 20% 40%; }
+					25%  { background-position: 25% 45%; }
+					30%  { background-position: 30% 30%; }
+					35%  { background-position: 35% 55%; }
+					40%  { background-position: 40% 70%; }
+					45%  { background-position: 45% 85%; }
+					50%  { background-position: 50% 35%;}
+					55%  { background-position: 55% 95%; }
+					60%  { background-position: 60% 90%; }
+					65%  { background-position: 65% 85%; }
+					70%  { background-position: 70% 80%; }
+					75%  { background-position: 50% 75%; }
+					80%  { background-position: 70% 70%; }
+					85%  { background-position: 80% 65%; }
+					90%  { background-position: 60% 60%; }
+					95%  { background-position: 40% 55%; }
+					100% { background-position: 30% 50%; }
+        }
+
         .header {
             text-align: center;
-            padding: 30px 20px;
+            padding: 60px 20px 40px 20px;
             color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-section {
+            margin-bottom: 20px;
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Section dédiée pour ajouter votre image/logo */
+            /* Exemple d'utilisation: */
+            /* background-image: url('votre-logo.png'); */
+            /* background-size: contain; */
+            /* background-repeat: no-repeat; */
+            /* background-position: center; */
+        }
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            z-index: -1;
         }
 
         .main-title {
-            font-size: 2.8rem;
-            margin-bottom: 10px;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+            background: linear-gradient(45deg, #fff, #f8f9fa, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            from { text-shadow: 3px 3px 6px rgba(0,0,0,0.4), 0 0 20px rgba(255,255,255,0.3); }
+            to { text-shadow: 3px 3px 6px rgba(0,0,0,0.4), 0 0 30px rgba(255,255,255,0.5); }
         }
 
         .subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            margin-bottom: 20px;
+            font-size: 1.8rem;
+            opacity: 0.95;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
         .container {
@@ -39,69 +111,77 @@
 
         .subjects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 35px;
+            margin-bottom: 50px;
         }
 
         .subject-card {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 35px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .subject-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ff6b9d, #c44569, #8e44ad);
+            transform: scaleX(0);
             transition: transform 0.3s ease;
-            border-top: 4px solid #ff416c;
+        }
+
+        .subject-card:hover::before {
+            transform: scaleX(1);
         }
 
         .subject-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
         }
 
         .subject-title {
-            font-size: 1.4rem;
-            color: #1e3c72;
-            margin-bottom: 10px;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, #ff6b9d, #8e44ad);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 25px;
             text-align: center;
-        }
-
-        .sub-parts-list {
-            list-style: none;
-            padding-left: 0;
-            margin-bottom: 15px;
-        }
-
-        .sub-parts-list li {
-            padding: 5px 0;
-            border-bottom: 1px solid #eee;
-            color: #555;
-            font-size: 0.95rem;
-            padding-left: 15px;
-            position: relative;
-        }
-
-        .sub-parts-list li:before {
-            content: "•";
-            color: #ff416c;
             font-weight: bold;
-            position: absolute;
-            left: 0;
         }
 
         .main-button {
             display: block;
-            margin: 15px auto 0 auto;
-            padding: 12px 25px;
-            background-color: #1e3c72;
+            margin: 25px auto 0 auto;
+            padding: 15px 35px;
+            background: linear-gradient(135deg, #ff6b9d, #c44569, #8e44ad);
+            background-size: 200% 200%;
             color: white;
             border: none;
-            border-radius: 8px;
-            font-size: 1rem;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 20px rgba(255, 107, 157, 0.3);
         }
 
         .main-button:hover {
-            background-color: #ff416c;
+            background-position: right center;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(255, 107, 157, 0.4);
         }
 
         .modal, .list-modal {
@@ -109,16 +189,18 @@
             position: fixed;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%) scale(0.95);
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transform: translate(-50%, -50%) scale(0.9);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
             z-index: 1000;
             text-align: center;
             max-width: 600px;
             width: 90%;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .modal.show, .list-modal.show {
@@ -128,18 +210,23 @@
 
         .modal a, .list-modal a {
             display: block;
-            margin: 10px 0;
-            padding: 10px 20px;
-            background: #1e3c72;
+            margin: 15px 0;
+            padding: 18px 30px;
+            background: linear-gradient(135deg, #ff6b9d, #8e44ad);
+            background-size: 200% 200%;
             color: white;
             text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-            transition: background 0.3s;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
         }
 
         .modal a:hover, .list-modal a:hover {
-            background: #ff416c;
+            background-position: right center;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 157, 0.4);
         }
 
         .overlay {
@@ -149,31 +236,158 @@
             left: 0;
             height: 100%;
             width: 100%;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
             z-index: 999;
+            transition: all 0.3s ease;
         }
 
         .overlay.show {
             display: block;
         }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+            background: linear-gradient(45deg, #fff, #f8f9fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 40px 0;
+            color: white;
+            opacity: 0.8;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .category-section {
+            margin-bottom: 40px;
+        }
+
+        .category-title {
+            color: white;
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #fff, #f8f9fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .fundamentals { order: 1; }
+        .advanced { order: 2; }
+        .specialized { order: 3; }
+
+        @media (max-width: 768px) {
+            .subjects-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .main-title {
+                font-size: 2.5rem;
+            }
+            
+            .stats {
+                gap: 30px;
+            }
+            
+            .subject-card {
+                padding: 25px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1 class="main-title">⚡ EtudeLib - Génie Électrique</h1>
-        <p class="subtitle">Popup complet - sous-parties cliquables</p>
+        <!-- Section pour ajouter une image/logo ici -->
+        <div class="logo-section">
+            <!-- Ajoutez votre image/logo ici -->
+        </div>
+        <h1 class="main-title">EtudeLib</h1>
+        <p class="subtitle">Votre plateforme gratuite de ressources éducatives en Génie Électrique</p>
     </div>
 
     <div class="container">
-        <div class="subjects-grid" id="subjectsGrid"></div>
+        <div class="category-section">
+            <h2 class="category-title">Cours</h2>
+            <div class="subjects-grid" id="coursGrid"></div>
+        </div>
+        
+        <div class="category-section">
+            <h2 class="category-title">Livres</h2>
+            <div class="subjects-grid" id="livresGrid">
+                <div class="subject-card">
+                    <h2 class="subject-title">Bibliothèque</h2>
+                    <button class="main-button" onclick="openModal('livres')">Voir les livres</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="stats">
+            
+            <div class="stat-item">
+                <span class="stat-number">50+</span>
+                <span class="stat-label">Cours</span>
+            </div>
+			
+            <div class="stat-item">
+                <span class="stat-number">100%</span>
+                <span class="stat-label">Gratuit</span>
+            </div>
+        </div>
     </div>
 
-    <div class="overlay" id="overlay" onclick="closeAllModals()"></div>
+    <footer>
+        <p>&copy; 2025 EtudeLib - Plateforme éducative gratuite en Génie Électrique</p>
+		<p>Mahboubi Mouhcine</p>
+		<p>Si tu trouves un problème avec les liens des cours, merci de me contacter par e-mail : mahboubi.mhc.etd@gmail.com </p>
+    </footer>
 
+    <div class="overlay" id="overlay" onclick="closeAllModals()"></div>
+	
+	
+	
     <div class="modal" id="mainModal">
-        <a href="#" onclick="openListModal('cours')">📖 Cours</a>
-        <a href="#" onclick="openListModal('td')">📝 TD</a>
-        <a href="#" onclick="openListModal('tp')">🔬 TP</a>
+        <a href="#" onclick="openListModal('cours')">Cours</a>
+        <a href="#" onclick="openListModal('exercices')">TD & Exercices</a>
     </div>
 
     <div class="list-modal" id="listModal">
@@ -182,281 +396,132 @@
 
     <script>
         const subjects = [
-            // 14 matières ici (je vais te générer full liste complète avec sous-parties)
-            // Exemple :
-            { id: 'automatique', title: '⚙️ Automatique', subParts: [ 
-    'Modélisation des systèmes (équations différentielles, fonctions de transfert)', 
-    'Réponse temporelle des systèmes', 
-    'Analyse de la stabilité (critère de Routh, Nyquist, Bode)', 
-    'Commande PID', 
-    'Systèmes linéaires continus et discrets' 
-] },
-{ id: 'electronique', title: '🔌 Électronique', subParts: [ 
-    'Diodes, transistors (BJT, MOSFET)', 
-    'Amplificateurs opérationnels (AOP)', 
-    'Circuits logiques combinatoires et séquentiels', 
-    'Convertisseurs CAN/CNA', 
-    'Régulateurs de tension' 
-] },
-{ id: 'electrotechnique', title: '⚡ Électrotechnique', subParts: [ 
-    'Circuits triphasés', 
-    'Puissances : active, réactive, apparente', 
-    'Transformateurs (mono et triphasés)', 
-    'Machines à courant continu', 
-    'Machines asynchrones (moteurs à cage)' 
-] },
-{ id: 'electronique_puissance', title: '🔋 Électronique de puissance', subParts: [ 
-    'Redresseurs (mono et triphasés)', 
-    'Convertisseurs DC/DC (buck, boost, buck-boost)', 
-    'Onduleurs (DC/AC)', 
-    'Commande PWM', 
-    'Hacheurs et convertisseurs pour moteurs' 
-] },
-{ id: 'machines', title: '⚙️ Machines électriques', subParts: [ 
-    'Moteurs à courant continu', 
-    'Moteurs asynchrones et synchrones', 
-    'Générateurs synchrones', 
-    'Courbes caractéristiques (rendement, couple-vitesse)', 
-    'Essais en charge / à vide' 
-] },
-{ id: 'instrumentation', title: '🧪 Instrumentation et mesure', subParts: [ 
-    'Capteurs (température, courant, position, etc.)', 
-    'Conditionnement de signal', 
-    'Outils de mesure (multimètre, oscilloscope)', 
-    'Mesure d’incertitude et d’erreurs', 
-    'Étapes d’étalonnage' 
-] },
-{ id: 'systemes_embarques', title: '🧠 Systèmes embarqués', subParts: [ 
-    'Microcontrôleurs (Arduino, STM32, PIC)', 
-    'Programmation en C embarqué', 
-    'Interfaces UART, SPI, I2C', 
-    'Contrôle de moteurs et capteurs', 
-    'Systèmes temps réel' 
-] },
-{ id: 'reseaux', title: '🏭 Réseaux électriques', subParts: [ 
-    'Réseaux haute, moyenne et basse tension', 
-    'Distribution de l’énergie électrique', 
-    'Protection (disjoncteurs, fusibles, relais)', 
-    'Compensation de puissance réactive', 
-    'Analyse des défauts et perturbations' 
-] },
-{ id: 'signal', title: '📶 Traitement du signal', subParts: [ 
-    'Transformée de Fourier / Laplace', 
-    'Filtres : passe-bas, passe-haut, bande, notch', 
-    'Analyse fréquentielle', 
-    'Signaux bruités et filtrage numérique', 
-    'Systèmes LTI' 
-] },
-{ id: 'telecom', title: '📡 Télécommunications', subParts: [ 
-    'Modulations (AM, FM, QAM)', 
-    'Codage et décodage', 
-    'Transmission analogique et numérique', 
-    'Antennes et propagation', 
-    'Protocoles de communication' 
-] },
-{ id: 'energies', title: '☀️ Énergies renouvelables', subParts: [ 
-    'Panneaux photovoltaïques', 
-    'Suivi du point de puissance maximale (MPPT)', 
-    'Éoliennes et turbines', 
-    'Stockage par batteries', 
-    'Systèmes hybrides (solaire + réseau)' 
-] },
-{ id: 'cem', title: '🧲 Compatibilité électromagnétique (CEM)', subParts: [ 
-    'Sources d’interférences (EMI)', 
-    'Blindage et filtrage', 
-    'Mise à la terre', 
-    'Normes CEM (CEI, CISPR)', 
-    'Tests de conformité' 
-] },
-{ id: 'informatique', title: '🖥️ Informatique industrielle', subParts: [ 
-    'Automates programmables (API / PLC)', 
-    'Langages LADDER, GRAFCET', 
-    'Interfaces homme-machine (IHM)', 
-    'Supervision (SCADA)', 
-    'Réseaux industriels (Modbus, Profibus)' 
-] },
-{ id: 'securite', title: '⚠️ Sécurité électrique et normalisation', subParts: [ 
-    'Dispositifs de protection (disjoncteurs, différentiels)', 
-    'Normes (NF C15-100, IEC 60364…)', 
-    'Mise à la terre des installations', 
-    'Zones à risque électrique', 
-    'Prévention des accidents électriques' 
-] }
-
-            // Continue pour les 14 matières comme ta liste envoyée
+            { 
+                id: 'electrotechnique', 
+                title: 'Électrotechnique'
+            },
+            { 
+                id: 'electronique', 
+                title: 'Électronique'
+            },
+            { 
+                id: 'mecanique', 
+                title: 'Mécanique'
+            },
+            { 
+                id: 'automatique', 
+                title: 'Automatique'
+            },
+            { 
+                id: 'electronique_puissance', 
+                title: 'Électronique de puissance'
+            },
+            { 
+                id: 'machines', 
+                title: 'Machines électriques'
+            },
+            { 
+                id: 'signal', 
+                title: 'Traitement du signal'
+            },
+           
         ];
 
-       const resourceLinks = {
-    'automatique': {
-        cours: [
-            { label: 'cour 1 : Modélisation des systèmes', url: 'https://drive.google.com/file/d/1rCDxFgOGQRVoqFEviqfhgEf8GJPcip8y/view?usp=sharing' },
-            { label: 'cour 2 : Modélisation des systèmes', url: 'https://drive.google.com/file/d/1uy53tHCXnHkIodVK-RU7ovnq8r7mlWdx/view?usp=sharing' },
-			{ label: 'Resume stabilite', url: 'https://drive.google.com/file/d/1MjEi9uPXYR_T7mnnB9c2Fm_eX9JVB4T9/view?usp=sharing' },
-            { label: 'Exemple de diagramme de bode ', url: 'https://drive.google.com/file/d/1bsVmfdvV3Ge8fQTrpcvxeB_5OkO6Hg5p/view?usp=sharing' },
-            { label: 'Commande PID', url: '#' },
-            { label: 'Systèmes linéaires continus et discrets', url: '#' }
-        ],
-        td: [ { label: 'TD 1', url: 'https://drive.google.com/file/d/1DNr-dcF1rlw0TLzmzyvkTeWhQnCeaU_R/view?usp=drive_link' },
-		{ label: 'TD 2', url: 'https://drive.google.com/file/d/1DmKpdK7Z7LCVBW-h3ipCbcGnsKI0W87r/view?usp=sharing' }],
-        tp: [ { label: 'TP 1', url: '#' }]
-    },
-    'electronique': {
-        cours: [
-            { label: 'Diodes, transistors (BJT, MOSFET)', url: '#' },
-            { label: 'Amplificateurs opérationnels (AOP)', url: '#' },
-            { label: 'Circuits logiques combinatoires et séquentiels', url: '#' },
-            { label: 'Convertisseurs CAN/CNA', url: '#' },
-            { label: 'Régulateurs de tension', url: '#' }
-        ],
-         td: [ { label: 'TD 1', url: '#' }],
-        tp: [ { label: 'TP 1', url: '#' }]
-    },
-    'electrotechnique': {
-        cours: [
-            { label: 'Circuits triphasés', url: '#' },
-            { label: 'Puissances : active, réactive, apparente', url: '#' },
-            { label: 'Transformateurs (mono et triphasés)', url: '#' },
-            { label: 'Machines à courant continu', url: '#' },
-            { label: 'Machines asynchrones (moteurs à cage)', url: '#' }
-        ],
-         td: [ { label: 'TD 1', url: '#' }],
-        tp: [ { label: 'TP 1', url: '#' }]
-    },
-    'electronique_puissance': {
-        cours: [
-            { label: 'Redresseurs (mono et triphasés)', url: '#' },
-            { label: 'Convertisseurs DC/DC (buck, boost, buck-boost)', url: '#' },
-            { label: 'Onduleurs (DC/AC)', url: '#' },
-            { label: 'Commande PWM', url: '#' },
-            { label: 'Hacheurs et convertisseurs pour moteurs', url: '#' }
-        ],
-         td: [ { label: 'TD 1', url: '#' }],
-        tp: [ { label: 'TP 1', url: '#' }]
-    },
-    'machines': {
-        cours: [
-            { label: 'Moteurs à courant continu', url: '#' },
-            { label: 'Moteurs asynchrones et synchrones', url: '#' },
-            { label: 'Générateurs synchrones', url: '#' },
-            { label: 'Courbes caractéristiques (rendement, couple-vitesse)', url: '#' },
-            { label: 'Essais en charge / à vide', url: '#' }
-        ],
-         td: [ { label: 'TD 1', url: '#' }],
-        tp: [ { label: 'TP 1', url: '#' }]
-    },
-    'instrumentation': {
-        cours: [
-            { label: 'Capteurs (température, courant, position, etc.)', url: '#' },
-            { label: 'Conditionnement de signal', url: '#' },
-            { label: 'Outils de mesure (multimètre, oscilloscope)', url: '#' },
-            { label: 'Mesure d’incertitude et d’erreurs', url: '#' },
-            { label: 'Étapes d’étalonnage', url: '#' }
-        ],
-         td: [ { label: 'TD 1', url: '#' }],
-        tp: [ { label: 'TP 1', url: '#' }]
-    },
-    'systemes_embarques': {
-        cours: [
-            { label: 'Microcontrôleurs (Arduino, STM32, PIC)', url: '#' },
-            { label: 'Programmation en C embarqué', url: '#' },
-            { label: 'Interfaces UART, SPI, I2C', url: '#' },
-            { label: 'Contrôle de moteurs et capteurs', url: '#' },
-            { label: 'Systèmes temps réel', url: '#' }
-        ],
-        td: [ { label: 'TD 1', url: '#' }],
-        tp: [ { label: 'TP 1', url: '#' }]
-    },
-    'reseaux': {
-        cours: [
-            { label: 'Réseaux haute, moyenne et basse tension', url: '#' },
-            { label: 'Distribution de l’énergie électrique', url: '#' },
-            { label: 'Protection (disjoncteurs, fusibles, relais)', url: '#' },
-            { label: 'Compensation de puissance réactive', url: '#' },
-            { label: 'Analyse des défauts et perturbations', url: '#' }
-        ],
-        td: [ { label: 'TD 1', url: '#' }],
-        tp: [ { label: 'TP 1', url: '#' }]
-    },
-    'signal': {
-        cours: [
-            { label: 'Transformée de Fourier / Laplace', url: '#' },
-            { label: 'Filtres : passe-bas, passe-haut, bande, notch', url: '#' },
-            { label: 'Analyse fréquentielle', url: '#' },
-            { label: 'Signaux bruités et filtrage numérique', url: '#' },
-            { label: 'Systèmes LTI', url: '#' }
-        ],
-         td: [ { label: 'TD 1', url: '#' }],
-        tp: [ { label: 'TP 1', url: '#' }]
-    },
-    'telecom': {
-        cours: [
-            { label: 'Modulations (AM, FM, QAM)', url: '#' },
-            { label: 'Codage et décodage', url: '#' },
-            { label: 'Transmission analogique et numérique', url: '#' },
-            { label: 'Antennes et propagation', url: '#' },
-            { label: 'Protocoles de communication', url: '#' }
-        ],
-         td: [ { label: 'TD 1', url: '#' }],
-        tp: [ { label: 'TP 1', url: '#' }]
-    },
-    'energies': {
-        cours: [
-            { label: 'Panneaux photovoltaïques', url: '#' },
-            { label: 'Suivi du point de puissance maximale (MPPT)', url: '#' },
-            { label: 'Éoliennes et turbines', url: '#' },
-            { label: 'Stockage par batteries', url: '#' },
-            { label: 'Systèmes hybrides (solaire + réseau)', url: '#' }
-        ],
-         td: [ { label: 'TD 1', url: '#' }],
-        tp: [ { label: 'TP 1', url: '#' }]
-    },
-    'cem': {
-        cours: [
-            { label: 'Sources d’interférences (EMI)', url: '#' },
-            { label: 'Blindage et filtrage', url: '#' },
-            { label: 'Mise à la terre', url: '#' },
-            { label: 'Normes CEM (CEI, CISPR)', url: '#' },
-            { label: 'Tests de conformité', url: '#' }
-        ],
-         td: [ { label: 'TD 1', url: '#' }],
-        tp: [ { label: 'TP 1', url: '#' }]
-    },
-    'informatique': {
-        cours: [
-            { label: 'Automates programmables (API / PLC)', url: '#' },
-            { label: 'Langages LADDER, GRAFCET', url: '#' },
-            { label: 'Interfaces homme-machine (IHM)', url: '#' },
-            { label: 'Supervision (SCADA)', url: '#' },
-            { label: 'Réseaux industriels (Modbus, Profibus)', url: '#' }
-        ],
-         td: [ { label: 'TD 1', url: '#' }],
-        tp: [ { label: 'TP 1', url: '#' }]
-    },
-    'securite': {
-        cours: [
-            { label: 'Dispositifs de protection (disjoncteurs, différentiels)', url: '#' },
-            { label: 'Normes (NF C15-100, IEC 60364…)', url: '#' },
-            { label: 'Mise à la terre des installations', url: '#' },
-            { label: 'Zones à risque électrique', url: '#' },
-            { label: 'Prévention des accidents électriques', url: '#' }
-        ],
-         td: [ { label: 'TD 1', url: '#' }],
-        tp: [ { label: 'TP 1', url: '#' }]
-    }
-};
+        const resourceLinks = {
+            'automatique': {
+                cours: [
+                    { label: 'Modélisation des systèmes - Partie 1', url: 'https://drive.google.com/file/d/1rCDxFgOGQRVoqFEviqfhgEf8GJPcip8y/view?usp=sharing' },
+                    { label: 'Modélisation des systèmes - Partie 2', url: 'https://drive.google.com/file/d/1uy53tHCXnHkIodVK-RU7ovnq8r7mlWdx/view?usp=sharing' },
+                    { label: 'Automatique et Modélisation', url: 'https://drive.google.com/file/d/1vP3heHvRq5UziWtE1UZvS9R5rupAH39p/view?usp=sharing' },
+                    { label: 'Résumé stabilité', url: 'https://drive.google.com/file/d/1MjEi9uPXYR_T7mnnB9c2Fm_eX9JVB4T9/view?usp=sharing' },
+                    { label: 'Diagramme de Bode - Exemple pratique', url: 'https://drive.google.com/file/d/1bsVmfdvV3Ge8fQTrpcvxeB_5OkO6Hg5p/view?usp=sharing' }
+                ],
+                exercices: [
+                    { label: 'TD 1 - Exercices fondamentaux', url: 'https://drive.google.com/file/d/1DNr-dcF1rlw0TLzmzyvkTeWhQnCeaU_R/view?usp=drive_link' },
+                    { label: 'TD 2 - Applications avancées', url: 'https://drive.google.com/file/d/1DmKpdK7Z7LCVBW-h3ipCbcGnsKI0W87r/view?usp=sharing' }
+                ]
+            },
+            'mecanique': {
+                cours: [
+                    { label: 'Introduction aux mécaniques', url: 'https://drive.google.com/file/d/1UniK26f-sjy1RR5fVrZdE0MzizLGpg4f/view?usp=sharing' }
+                ],
+                exercices: []
+            },
+            'electronique': {
+                cours: [
+                    { label: 'Transistor bipolaire', url: 'https://drive.google.com/file/d/16UVy6DHufpMPaZQa1qyi4TNEl6PSyB4J/view?usp=sharing' },
+                    { label: 'AOP - Cours 1', url: 'https://drive.google.com/file/d/19yUTO335DxkcxfS1LRuNZCEI_x7VGv8T/view?usp=sharing' },
+                    { label: 'AOP - Cours 2', url: 'https://drive.google.com/file/d/1TzmJ56Am1I_oq_hmDQx7-RqWdclkG5VK/view?usp=sharing' },
+                    { label: 'Convertisseurs CAN/CNA', url: 'https://drive.google.com/file/d/1igsQqMKyl5BaoTL6K-g52kqF_udXPYcP/view?usp=sharing' }
+                ],
+                exercices: []
+            },
+            'electrotechnique': {
+                cours: [
+                    { label: 'Lois en régime continu', url: 'https://drive.google.com/file/d/1WZ6ZwBS8NNpFtBBsIv5GAVb0rI78qnVh/view?usp=sharing' },
+                    { label: 'Lois d\'électricité', url: 'https://drive.google.com/file/d/1yNFyJXsuwc1hKOOgjK9WNuTUzeOTGAOv/view?usp=sharing' },
+                    { label: 'Séries de Fourier', url: 'https://drive.google.com/file/d/1VvyfFWtnGMUUIodUtVceWxWNFgCugqFs/view?usp=sharing' },
+                    { label: 'Régime alternatif', url: 'https://drive.google.com/file/d/1oM-ADke3k9vqJa3M0lQbV2ia49W6HB8X/view?usp=sharing' },
+                    { label: 'Circuits triphasés - Partie 1', url: 'https://drive.google.com/file/d/1m7cIbfmj1VUWdZI1uUjf43KB8vbHzzM-/view?usp=sharing' },
+                    { label: 'Circuits triphasés - Partie 2', url: 'https://drive.google.com/file/d/12_tf1tp_JnORerUqtNKaB9HjuBrYEFJx/view?usp=sharing' }
+                ],
+                exercices: [
+                    { label: 'TD MAS - Machines Asynchrones', url: 'https://drive.google.com/file/d/17K0pT8AIE82VGZvUJEnuRHGO9RNom3lH/view?usp=sharing' }
+                ]
+            },
+            'electronique_puissance': {
+                cours: [
+                    { label: 'Redresseurs - Partie 1', url: 'https://drive.google.com/file/d/1PjHCtO_jRFv36kOi408E1DrAUkLc5wlw/view?usp=sharing' },
+                    { label: 'Redresseurs - Partie 2', url: 'https://drive.google.com/file/d/123HGJsvGAD1rHSWDJHz4jVtS9NHrumLd/view?usp=sharing' },
+                    { label: 'Convertisseurs DC/DC', url: 'https://drive.google.com/file/d/1uqsgDuLMwpMsQcdQR7RGGa-EUL9851KS/view?usp=sharing' },
+                    { label: 'Onduleurs DC/AC - Partie 1', url: 'https://drive.google.com/file/d/1iDtnJMcG5xe3vboCYIX9AAuTTeDjPRTL/view?usp=sharing' },
+                    { label: 'Onduleurs DC/AC - Partie 2', url: 'https://drive.google.com/file/d/1hzRrD5hc9ahjtWZf3nwI8N_zA4OpxQRy/view?usp=sharing' }
+                ],
+                exercices: []
+            },
+            'machines': {
+                cours: [],
+                exercices: []
+            },
+            'signal': {
+                cours: [
+                    { label: 'Filtres et analyse fréquentielle', url: 'https://drive.google.com/file/d/1gUtmX8vU8Ej_6wDUm6So3Et83FRJMuJv/view?usp=sharing' }
+                ],
+                exercices: []
+            },
+            'adc': {
+                cours: [
+                    { label: 'Sommaire et programme', url: 'https://drive.google.com/file/d/1tcDWcSS_QHEXTjXycE9LT5TJ7fUiguD_/view?usp=sharing' }
+                ],
+                exercices: []
+            },
+            'livres': {
+                cours: [
+                    { label: 'S mecanique ', url: 'https://drive.google.com/file/d/19Yq7KV6Kh-4b3deDiitcwxbAwj06mU-v/view?usp=sharing' },
+                    { label: 'Cours ADC complet', url: 'https://drive.google.com/file/d/1UKoNWmsELJc7laA7ldjIjE-QnP5M7IaO/view?usp=drive_link' },
+                    { label: 'Livre 2 - À ajouter', url: '#' },
+                    { label: 'Livre 3 - À ajouter', url: '#' }
+                ],
+                exercices: []
+            }
+        };
 
-        const grid = document.getElementById('subjectsGrid');
-        subjects.forEach(subject => {
+        function createSubjectCard(subject) {
             const card = document.createElement('div');
             card.className = 'subject-card';
 
-            const title = `<h2 class="subject-title">${subject.title}</h2>`;
-            const list = subject.subParts.map(item => `<li>${item}</li>`).join('');
-            const ul = `<ul class="sub-parts-list">${list}</ul>`;
-            const button = `<button class="main-button" onclick="openModal('${subject.id}')">Voir les ressources</button>`;
+            card.innerHTML = `
+                <h2 class="subject-title">${subject.title}</h2>
+                <button class="main-button" onclick="openModal('${subject.id}')">Voir les ressources</button>
+            `;
 
-            card.innerHTML = title + ul + button;
-            grid.appendChild(card);
+            return card;
+        }
+
+        // Populate cours grid
+        const coursGrid = document.getElementById('coursGrid');
+        subjects.forEach(subject => {
+            coursGrid.appendChild(createSubjectCard(subject));
         });
 
         let currentSubject = '';
@@ -472,7 +537,7 @@
             let html = '';
 
             if (!list || list.length === 0) {
-                html = '<p>Aucune ressource disponible.</p>';
+                html = '<p style="color: #666; font-style: italic; font-size: 1.1rem; padding: 20px;">Aucune ressource disponible pour le moment.</p>';
             } else {
                 list.forEach(item => {
                     html += `<a href="${item.url}" target="_blank">${item.label}</a>`;
@@ -489,6 +554,19 @@
             document.getElementById('listModal').classList.remove('show');
             document.getElementById('overlay').classList.remove('show');
         }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeAllModals();
+            }
+        });
     </script>
 </body>
+
+<script>
+  alert("Si tu trouves un problème avec les liens des cours, merci de me contacter par e-mail : mahboubi.mhc.etd@gmail.com");
+</script>
+
+
 </html>
